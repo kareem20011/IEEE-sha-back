@@ -50,39 +50,36 @@
     <div class="card">
 
         <div class="card-body">
-            <form method="POST" method="post" action="{{ route('password.update') }}">
+            <form method="post" action="{{ route('profile.password') }}">
                 @csrf
-                @method('put')
+                
                 <div class="row">
+                    @if(Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                    @endif
                     <div class="col-12">
                         <label for="current_password" class="form-label">Current Password</label>
                         <input id="current_password" class="form-control" name="current_password" type="password" autofocus />
+                        @error('current_password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('current_password')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
 
                     <div class="col-12">
                         <label for="password" class="form-label">New password</label>
                         <input class="form-control" type="password" name="password" id="password" />
+                        @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
 
                     <div class="col-12">
                         <label for="password_confirmation" class="form-label">Confirm password</label>
                         <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" />
+                        @error('password_confirmation')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    @error('password_confirmation')
-                        <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
 
                     <div class="mt-2">
                         <button type="submit" class="btn btn-primary me-2">Save changes</button>

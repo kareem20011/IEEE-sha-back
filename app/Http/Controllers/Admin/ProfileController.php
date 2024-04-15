@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use function Laravel\Prompts\password;
+
 class ProfileController extends Controller
 {
     /**
@@ -40,6 +42,29 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function password(Request $request){
+        $request->validate([
+            'current_password' => 'required|string',
+            'password' => 'required|confirmed|min:8',
+            'password_confirmation' => 'required|string',
+        ]);
+
+
+        if ($request->has('password')) {
+            if(Hash::check(request()->current_password, auth()->user()->password)){
+                $user = auth()->user();
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+                return redirect()->back()->with('status', 'Your password has been updated');
+            }else{
+                return redirect()->back()->with('error', 'The password you have entered is incorrect');
+            }
+        }
+
+    }
+
+
     /**
      * Delete the user's account.
      */
@@ -57,4 +82,5 @@ class ProfileController extends Controller
         return Redirect::to('/');
 
     }
+
 }

@@ -23,25 +23,34 @@
 
 <body>
 
-    <!--Start Topbar -->
+		<!--Content Start-->
+	<div class="content-start transition">
+		<div class="container-fluid dashboard">
 
-	@include('admin.layouts.topbar')
 
-    <!--End Topbar -->
-    
-	<!--Start Sidebar-->
-    
-	@include('admin.layouts.sidebar')
+			<!--Start Topbar -->
 
-    <!-- End Sidebar-->
+			@include('admin.layouts.topbar')
 
-    <div class="sidebar-overlay"></div>
+			<!--End Topbar -->
+			
+			<!--Start Sidebar-->
+			
+			@include('admin.layouts.sidebar')
 
-    @yield('admin_content')
+			<!-- End Sidebar-->
 
-    <!-- Start Footer -->
-	@include('admin.layouts.footer')
-    <!-- End Footer -->
+			<div class="sidebar-overlay"></div>
+
+			@yield('admin_content')
+
+			<!-- Start Footer -->
+			@include('admin.layouts.footer')
+			<!-- End Footer -->
+	
+		</div>
+	</div>
+
 
     <!-- Preloader -->
 	<div class="loader">

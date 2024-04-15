@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\website\EventController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\MainErrorsController;
+use App\Http\Controllers\website\AboutController;
+use App\Http\Controllers\website\BoardController;
+use App\Http\Controllers\website\WorkshopsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,15 +20,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website.pages.home');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.pages.dashboard');
-})->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+Route::resource('events', EventController::class);
+
+
+Route::get('workshops', [WorkshopsController::class, 'index'])->name('workshops.index');
+Route::get('board', [BoardController::class, 'index'])->name('board.index');
+Route::get('about', [AboutController::class, 'index'])->name('about.index');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'password'])->name('profile.password');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

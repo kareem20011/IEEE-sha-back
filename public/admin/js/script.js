@@ -33,16 +33,16 @@ allDropdown.forEach(item=> {
 	a.addEventListener('click', function (e) {
 		e.preventDefault();
 
-		if(!this.classList.contains('active')) {
-			allDropdown.forEach(i=> {
-				const aLink = i.parentElement.querySelector('a:first-child');
+		// if(!this.classList.contains('active')) {
+		// 	allDropdown.forEach(i=> {
+		// 		const aLink = i.parentElement.querySelector('a:first-child');
 
-				aLink.classList.remove('active');
-				i.classList.remove('show');
-			})
-		}
+		// 		aLink.classList.remove('active');
+		// 		i.classList.remove('show');
+		// 	})
+		// }
 
-		this.classList.toggle('active');
+		// this.classList.toggle('active');
 		item.classList.toggle('show');
 	})
 })
