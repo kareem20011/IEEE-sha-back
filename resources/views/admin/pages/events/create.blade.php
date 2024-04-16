@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-        <form method="POST" action="{{ route( 'admin.events.store' ) }}">
+        <form method="POST" action="{{ route( 'admin.events.store' ) }}" enctype="multipart/form-data">
             @csrf
             @if (session('status'))
                 <div class="alert alert-success" role="alert">

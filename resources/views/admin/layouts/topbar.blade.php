@@ -1,3 +1,6 @@
+@php
+$user = auth()->user();
+@endphp
 <div class="topbar transition">
     <div class="bars">
         <button type="button" class="btn transition" id="sidebar-toggle">
@@ -9,7 +12,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    <img src="{{ asset( 'temp/images/avatar/avatar-1.png' ) }}" alt="">
+                    @if ($user && $user->hasMedia('images'))
+                        <img src="{{ $user->getFirstMediaUrl('images') }}" alt="">
+                    @else
+                        <img src="{{ asset( 'temp/images/avatar/avatar-1.png' ) }}" alt="">
+                    @endif
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fa fa-user size-icon-1"></i> <span>My

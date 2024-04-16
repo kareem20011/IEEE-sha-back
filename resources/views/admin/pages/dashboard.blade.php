@@ -8,107 +8,36 @@
 
 <div class="row">
 
-	<div class="col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-4 d-flex align-items-center">
-						<i class="fas fa-inbox icon-home bg-primary text-light"></i>
-					</div>
-					<div class="col-8">
-						<p>Revenue</p>
-						<h5>$65</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-4 d-flex align-items-center">
-						<i class="fas fa-clipboard-list icon-home bg-success text-light"></i>
-					</div>
-					<div class="col-8">
-						<p>Orders</p>
-						<h5>3000</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-4 d-flex align-items-center">
-						<i class="fas fa-chart-bar  icon-home bg-info text-light"></i>
-					</div>
-					<div class="col-8">
-						<p>Sales</p>
-						<h5>5500</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-md-6 col-lg-3">
-		<div class="card">
-			<div class="card-body">
-				<div class="row">
-					<div class="col-4 d-flex align-items-center">
-						<i class="fas fa-id-card  icon-home bg-warning text-light"></i>
-					</div>
-					<div class="col-8">
-						<p>Employes</p>
-						<h5>256</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
-				<h4>Recent Messages</h4>
+				<h4>Recent Events</h4>
 			</div>
 			<div class="card-body pb-4">
-				<div class="recent-message d-flex px-4 py-3">
-					<div class="avatar avatar-lg">
-						<img src="{{ asset( 'temp/images/message/4.jpg' ) }}">
+				@foreach($recentEvents as $recentEvent)
+					<div class="recent-message d-flex px-4 py-3">
+						<div class="avatar avatar-lg">
+						@if($recentEvent->hasMedia('images'))
+							<img src="{{ $recentEvent->getFirstMediaUrl('images') }}" class="card-img-top" alt="...">
+						@else
+							<img src="{{ asset( 'temp/images/message/1.jpg' ) }}">
+						@endif
+						</div>
+						<div class="name ms-4">
+							<h5 class="mb-1">{{ $recentEvent->title }}</h5>
+							<h6 class="text-muted mb-0">
+								@if (\Carbon\Carbon::parse($recentEvent->expiry_date)->isPast())
+									<h6 class="text-danger h6">Event has expired!</h6>
+								@else
+									<h6 class="text-success h6">{{ $recentEvent->expiry_date }}</h6>
+								@endif
+							</h6>
+						</div>
 					</div>
-					<div class="name ms-4">
-						<h5 class="mb-1">Hank Schrader</h5>
-						<h6 class="text-muted mb-0">@johnducky</h6>
-					</div>
-				</div>
-				<div class="recent-message d-flex px-4 py-3">
-					<div class="avatar avatar-lg">
-						<img src="{{ asset( 'temp/images/message/5.jpg' ) }}">
-					</div>
-					<div class="name ms-4">
-						<h5 class="mb-1">Dean Winchester</h5>
-						<h6 class="text-muted mb-0">@imdean</h6>
-					</div>
-				</div>
-				<div class="recent-message d-flex px-4 py-3">
-					<div class="avatar avatar-lg">
-						<img src="{{ asset( 'temp/images/message/1.jpg' ) }}">
-					</div>
-					<div class="name ms-4">
-						<h5 class="mb-1">John Doe</h5>
-						<h6 class="text-muted mb-0">@Doejohn</h6>
-					</div>
-				</div>
+				@endforeach
+				
 				<div class="px-4">
-					<button class='btn btn-block btn-xl btn-primary font-bold mt-3'>Start
-						Conversation</button>
+					<a href="{{ route( 'admin.events.index' ) }}" class='btn btn-block btn-xl btn-primary font-bold mt-3'>Show All</a>
 				</div>
 			</div>
 		</div>

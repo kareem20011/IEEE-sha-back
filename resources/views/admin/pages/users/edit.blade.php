@@ -3,8 +3,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-        <form method="POST" action="{{ route( 'admin.users.store' ) }}">
+        <form method="POST" action="{{ route( 'admin.users.update', $user->id ) }}" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}

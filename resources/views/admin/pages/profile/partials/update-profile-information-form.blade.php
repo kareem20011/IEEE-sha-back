@@ -64,7 +64,7 @@
 </section> -->
 <div class="row">
     <div class="card">
-        <form method="POST" action="{{ route( 'profile.update' ) }}">
+        <form method="POST" action="{{ route( 'profile.update' ) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="card-body">

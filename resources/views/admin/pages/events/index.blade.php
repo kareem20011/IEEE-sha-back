@@ -34,10 +34,10 @@
       </td>
       <td>{{ $event->status == '0' ? 'Disabled' : 'Active' }}</td>
       <td>
-        @if(isset($event->images))
-        {{ $event->images }}
+        @if($event->hasMedia('images'))
+          <img class="dashboard-table-image" src="{{ $event->getFirstMedia('images')->getUrl() }}" alt="{{ $event->title }}">
         @else
-        <p>No image</p>
+          <p>No image</p>
         @endif
       </td>
       <td>

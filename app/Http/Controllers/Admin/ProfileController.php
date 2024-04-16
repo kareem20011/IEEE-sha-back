@@ -31,6 +31,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        $user = User::find(auth()->user()->id);
+        if ($request->has('image')) {
+            $old = $user->getFirstMedia('images');
+            if ($old) {
+                $old->delete();
+            }
+            $user->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
@@ -50,9 +59,9 @@ class ProfileController extends Controller
         ]);
 
 
+        $user = User::find(auth()->user()->id);
         if ($request->has('password')) {
             if(Hash::check(request()->current_password, auth()->user()->password)){
-                $user = auth()->user();
                 $user->update([
                     'password' => Hash::make($request->password),
                 ]);

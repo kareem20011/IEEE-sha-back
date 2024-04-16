@@ -40,7 +40,14 @@ class EventController extends Controller
             'number_of_tickets' => 'required|integer|min:1', // Number of tickets validation
             'status' => 'required', // Status validation with allowed values
           ]);
-        Event::create($request->except('_token'));
+        $event = Event::create($request->except('_token'));
+        if($request->has('image')){
+            $old = $event->getFirstMedia('images');
+            if ($old) {
+                $old->delete();
+            }
+            $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
+        }
         return redirect()->back()->with([
             'status' => 'Your event has been added.',
         ]);

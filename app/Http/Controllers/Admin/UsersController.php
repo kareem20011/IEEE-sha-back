@@ -40,13 +40,20 @@ class UsersController extends Controller
             'password_confirmation' => 'required|string',
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'admin',
         ]);
 
+        if($request->has('images')){
+            $old = $user->getFirstMedia('images');
+            if ($old) {
+                $old->delete();
+            }
+            $user->addMediaFromRequest('image')->usingName($user->name)->toMediaCollection('images');
+        }
         session()->flash('success', 'User created successfully!');
         return redirect()->back();
     }
@@ -74,7 +81,25 @@ class UsersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:2',
+            'email' => 'required|email',
+            'role' => 'required|string',
+        ]);
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+        if($request->has('image')){
+            $old = $user->getFirstMedia('images');
+            if ($old) {
+                $old->delete();
+            }
+            $user->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->back()->with(['success' => 'Your account has been updated']);
     }
 
     /**

@@ -42,6 +42,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #02131d;
 }
+.btn.btn-theme{
+  background-color: #fa991c;
+  color: white;
+}
+
 p {
   margin-bottom: 0px;
   font-size: 14px;

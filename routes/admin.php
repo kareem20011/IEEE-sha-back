@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\admin\EventController;
 use App\Http\Controllers\admin\UsersController;
+use App\Models\Event;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.'], function(){
     Route::get('/dashboard', function () {
-        return view('admin.pages.dashboard');
+        $recentEvents = Event::orderBy('created_at')->limit(3)->get();
+        return view('admin.pages.dashboard', compact('recentEvents'));
     })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
     
     Route::resource('events', EventController::class);

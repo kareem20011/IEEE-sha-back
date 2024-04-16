@@ -45,7 +45,7 @@
                 
             </div>
             <div class="card-footer text-right">
-                <form method="post" action=" {{ route( 'users.destroy', $user->id ) }} ">
+                <form method="post" action=" {{ route( 'admin.users.destroy', $user->id ) }} ">
                     @csrf
                     @method( 'DELETE' )
                     @error('password')

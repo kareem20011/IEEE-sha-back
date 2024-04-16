@@ -79,7 +79,7 @@ https://templatemo.com/tm-541-host-cloud
                 </form>
             </li>
             @if( auth()->user()->role == 'admin' )
-            <li><a href="{{ route( 'dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a></li>
+            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a></li>
             @endif
           </ul>
         </div>
