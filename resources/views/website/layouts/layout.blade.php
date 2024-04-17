@@ -8,8 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="TemplateMo">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
-
-  <title>IEEE-sha | Home </title>
+  @if($setting->hasMedia('favicon'))
+  <link rel="icon" type="image/x-icon" href="{{ $setting->getFirstMediaUrl( 'favicon' )}}">
+  @endif
+  <title>{{ config("app.name") }} | Home </title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset( 'website/css/bootstrap.min.css' ) }}" rel="stylesheet">
@@ -42,7 +44,7 @@ https://templatemo.com/tm-541-host-cloud
     <nav class="navbar navbar-expand-lg">
       <div class="container">
         <a class="navbar-brand" href="index.html">
-          <h2>IEEE <em>sha</em></h2>
+          <h2>{{ config("app.name") }}</h2>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
           aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -161,10 +163,12 @@ https://templatemo.com/tm-541-host-cloud
               <h2>More Information</h2>
             </div>
             <ul class="footer-list">
-              <li>Phone: <a href="#">010-020-0560</a></li>
-              <li>Email: <a href="#">mail@company.com</a></li>
-              <li>Support: <a href="#">support@company.com</a></li>
-              <li>Website: <a href="#">www.company.com</a></li>
+              <li>Phone: <a href="#">0{{ $setting->phone_number }}</a></li>
+              <li>Whatsapp: <a href="#">0{{ $setting->whatsapp }}</a></li>
+              <li>Email: <a href="#">{{ $setting->email }}</a></li>
+              <li>Facebook: <a href="#">{{ $setting->facebook }}</a></li>
+              <li>Instagram: <a href="#">{{ $setting->instagram }}</a></li>
+              <li>Tiktok: <a href="#">{{ $setting->tiktok }}</a></li>
             </ul>
           </div>
         </div>

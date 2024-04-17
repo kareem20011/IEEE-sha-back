@@ -26,12 +26,12 @@
       <td>{{ $user->email }}</td>
       <td>
         @if ($user->hasMedia('images'))
-          <img class="dashboard-table-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
+        <img class="dashboard-table-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
         @else
           <p>No image</p>
         @endif
       </td>
-      <td style="color: {{ $user->role == 'admin' ? 'red' : 'black' }}">{{ $user->role }}</td>
+      <td>{{ $user->role }}</td>
       <td>
         <a href="{{ route( 'admin.users.show', $user->id ) }}">Show</a>
         <a href="{{ route( 'admin.users.edit', $user->id ) }}">Edit</a>

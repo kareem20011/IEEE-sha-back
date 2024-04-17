@@ -7,7 +7,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>IEEE-sha | Dashboard</title>
+	<title>{{ config("app.name") }} | Dashboard</title>
+
+	@if($setting->hasMedia('favicon'))
+		<link rel="icon" type="image/x-icon" href="{{ $setting->getFirstMediaUrl( 'favicon' )}}">
+	@endif
 
 	<!-- Bootstrap CSS-->
 	<link rel="stylesheet" href="{{ asset( 'admin/css/bootstrap.css' ) }}">

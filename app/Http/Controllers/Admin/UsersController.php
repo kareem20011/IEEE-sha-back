@@ -35,7 +35,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => 'required|string|min:2',
             'role' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required|string',
         ]);
@@ -47,15 +47,12 @@ class UsersController extends Controller
             'role' => 'admin',
         ]);
 
-        if($request->has('images')){
-            $old = $user->getFirstMedia('images');
-            if ($old) {
-                $old->delete();
-            }
+        if($request->has('image')){
+            $user->clearMediaCollection('images');
             $user->addMediaFromRequest('image')->usingName($user->name)->toMediaCollection('images');
         }
         session()->flash('success', 'User created successfully!');
-        return redirect()->back();
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -93,13 +90,10 @@ class UsersController extends Controller
             'role' => $request->role,
         ]);
         if($request->has('image')){
-            $old = $user->getFirstMedia('images');
-            if ($old) {
-                $old->delete();
-            }
+            $user->clearMediaCollection('images');
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }
-        return redirect()->back()->with(['success' => 'Your account has been updated']);
+        return redirect()->route('admin.users.index')->with(['success' => 'Your account has been updated']);
     }
 
     /**
@@ -113,6 +107,6 @@ class UsersController extends Controller
         // return $request;
         User::where('id', $id)->delete();
         session()->flash('success', 'User deleted successfully!');
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 }

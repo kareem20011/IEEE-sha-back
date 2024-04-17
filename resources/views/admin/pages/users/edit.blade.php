@@ -47,10 +47,10 @@
                     <div class="d-flex align-items-start align-items-sm-center">
                         <div class="button-wrapper">
                             <p class="text-muted mb-0">Upload image JPG, PNG.</p>
-                            <label for="upload" class="btn btn-primary" tabindex="0">
+                            <label for="admin_update" class="btn btn-primary" tabindex="0">
                                 <span class="d-none d-sm-block">Upload new photo</span>
                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                <input name="image" type="file" id="upload" class="account-file-input" hidden accept="image/png, image/jpeg" />
+                                <input name="image" type="file" id="admin_update" class="account-file-input" hidden accept="image/png, image/jpeg" />
                             </label>
                             @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>

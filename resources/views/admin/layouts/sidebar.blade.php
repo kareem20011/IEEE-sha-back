@@ -4,7 +4,7 @@
 
             <!-- Logo -->
             <div class="logo">
-                <h2 class="mb-0"><img src="{{ asset( 'temp/images/logo.png' ) }}"> Atrana</h2>
+                <h2 class="mb-0">{{ config("app.name") }}</h2>
             </div>
 
             <ul class="side-menu">
@@ -13,6 +13,9 @@
                         <i class='bx bxs-dashboard icon'></i> Dashboard
                     </a>
                 </li>
+
+                <!-- Pages-->
+
 
                 <li>
                     <a href="#" class="{{ request()->is('admin/events/*') || request()->is('admin/events') ? 'active' : '' }}">
@@ -27,7 +30,6 @@
                     </ul>
                 </li>
 
-                <!-- Pages-->
 
                 <li>
                     <a href="#" class="{{ request()->is('admin/users/*') || request()->is('admin/users') ? 'active' : '' }}">
@@ -42,11 +44,21 @@
                 </li>
 
                 <li>
-                    <a href="blank-pages.html">
+                    <a href="{{ route( 'admin.about.edit' ) }}" class="{{ request()->is('admin/about') ? 'active' : '' }}">
                         <i class='bx bxs-meh-blank icon'></i>
-                        Blank Page
+                        About Us
                     </a>
                 </li>
+
+                <li>
+                    <a href="/">
+                    <box-icon type='solid' name='objects-horizontal-center'></box-icon>
+                        <!-- <i class='bx bxs-rfid icon'></i> -->
+                        <i class="fa-solid fa-globe me-4 ms-3"></i>
+                        Website
+                    </a>
+                </li>
+
 
             </ul>
 

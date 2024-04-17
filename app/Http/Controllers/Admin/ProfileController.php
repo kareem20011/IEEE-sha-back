@@ -33,10 +33,7 @@ class ProfileController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if ($request->has('image')) {
-            $old = $user->getFirstMedia('images');
-            if ($old) {
-                $old->delete();
-            }
+            $user->clearMediaCollection('images');
             $user->addMediaFromRequest('image')->toMediaCollection('images');
         }
 

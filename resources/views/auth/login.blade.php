@@ -27,12 +27,7 @@
                     @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-check form-check-lg d-flex align-items-end">
-                        <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label text-gray-600" for="flexCheckDefault" name="remember">
-                            Keep me logged in
-                        </label>
-                    </div>
+    
                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
                 </form>
                 <div class="text-center mt-5 text-lg fs-4">
