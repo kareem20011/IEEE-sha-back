@@ -6,7 +6,7 @@
 @endif
 
 <div style="overflow-x:auto;">
-  <h3>All events</h3>
+  <h2>All events</h2>
   <table class="responsive-table">
     
     <tr>

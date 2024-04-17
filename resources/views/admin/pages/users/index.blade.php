@@ -6,6 +6,7 @@
 @endif
 
 <div style="overflow-x:auto;">
+<h2>All Users</h2>
   <table class="responsive-table">
     
     <tr>

@@ -15,7 +15,7 @@
         <div class="row">
         <div class="col-md-12">
             <div class="section-heading mb-5">
-                <span>Let's talk</span>
+                <span>Let's share</span>
                 <h2>About Us</h2>
             </div>
         </div>

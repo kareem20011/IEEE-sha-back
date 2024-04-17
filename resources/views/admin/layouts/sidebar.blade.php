@@ -30,6 +30,29 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="#" class="{{ request()->is('admin/workshops/*') || request()->is('admin/workshops') ? 'active' : '' }}">
+                        <i class='bx bxs-user icon'></i>
+                        Workshops
+                        <i class='bx bx-chevron-right icon-right'></i>
+                    </a>
+                    <ul class="side-dropdown">
+                        <li><a class="{{ request()->is('admin/workshops/create') ? 'active' : '' }}" href="{{ route( 'admin.workshops.create' ) }}">Add user/admin</a></li>
+                        <li><a href="{{ route( 'admin.workshops.index' ) }}" class="{{ request()->is('admin/workshops') ? 'active' : '' }}">Show all</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" class="{{ request()->is('admin/boards/*') || request()->is('admin/boards') ? 'active' : '' }}">
+                        <i class='bx bxs-user icon'></i>
+                        Boards
+                        <i class='bx bx-chevron-right icon-right'></i>
+                    </a>
+                    <ul class="side-dropdown">
+                        <li><a class="{{ request()->is('admin/boards/create') ? 'active' : '' }}" href="{{ route( 'admin.boards.create' ) }}">Add user/admin</a></li>
+                        <li><a href="{{ route( 'admin.boards.index' ) }}" class="{{ request()->is('admin/boards') ? 'active' : '' }}">Show all</a></li>
+                    </ul>
+                </li>
 
                 <li>
                     <a href="#" class="{{ request()->is('admin/users/*') || request()->is('admin/users') ? 'active' : '' }}">

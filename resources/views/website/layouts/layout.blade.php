@@ -136,8 +136,7 @@ https://templatemo.com/tm-541-host-cloud
             <div class="footer-heading">
               <h2>About Us</h2>
             </div>
-            <p>Host Cloud is provided by TemplateMo for free of charge. Anyone can download and use this CSS Bootstrap
-              template for commercial purposes.</p>
+            <p>{{ $about->about_us }}</p>
           </div>
         </div>
 
@@ -157,18 +156,48 @@ https://templatemo.com/tm-541-host-cloud
         </div>
 
 
-        <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="footer-item">
             <div class="footer-heading">
               <h2>More Information</h2>
             </div>
             <ul class="footer-list">
-              <li>Phone: <a href="#">0{{ $setting->phone_number }}</a></li>
-              <li>Whatsapp: <a href="#">0{{ $setting->whatsapp }}</a></li>
-              <li>Email: <a href="#">{{ $setting->email }}</a></li>
-              <li>Facebook: <a href="#">{{ $setting->facebook }}</a></li>
-              <li>Instagram: <a href="#">{{ $setting->instagram }}</a></li>
-              <li>Tiktok: <a href="#">{{ $setting->tiktok }}</a></li>
+              @if($setting->phone_number != null)
+                <li>Phone: <a href="#">
+                  {{ $setting->phone_number }}
+                </a></li>
+              @endif
+
+              @if($setting->whatsapp != null)
+                <li>Whatsapp: <a href="#">
+                  {{ $setting->whatsapp }}
+                </a></li>
+              @endif
+
+              @if($setting->email != null)
+                <li>Email: <a href="#">
+                  {{ $setting->email }}
+                </a></li>
+              @endif
+
+              @if($setting->facebook != null)
+                <li>Facebook: <a href="#">
+                  {{ $setting->facebook }}
+                </a></li>
+              @endif
+
+              @if($setting->instagram != null)
+                <li>Instagram: <a href="#">
+                  {{ $setting->instagram }}
+                </a></li>
+              @endif
+
+              @if($setting->tiktok != null)
+                <li>Tiktok: <a href="#">
+                  {{ $setting->tiktok }}
+                </a></li>
+              @endif
+
             </ul>
           </div>
         </div>

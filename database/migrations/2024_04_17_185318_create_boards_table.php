@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('role');
             $table->text('description');
-            $table->date('expiry_date');
-            $table->integer('number_of_tickets');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->enum('status', ['1', '0'])->default('1');
             $table->timestamps();
         });
@@ -27,6 +28,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('boards');
     }
 };
+
+// 'title',
+//         'role',
+//         'description',
+//         'category_id',

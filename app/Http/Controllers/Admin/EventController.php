@@ -42,10 +42,7 @@ class EventController extends Controller
           ]);
         $event = Event::create($request->except('_token'));
         if($request->has('image')){
-            $old = $event->getFirstMedia('images');
-            if ($old) {
-                $old->delete();
-            }
+            $event->clearMediaCollection('images');
             $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
         }
         return redirect()->back()->with([

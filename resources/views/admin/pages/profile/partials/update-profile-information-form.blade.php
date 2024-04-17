@@ -4,23 +4,26 @@
             @csrf
             @method('patch')
             <div class="card-body">
-                <div class="d-flex align-items-start align-items-sm-center  ">
-                    <div class="button-wrapper">
-                        <label for="auth_image" class="btn btn-primary me-2 mb-4" tabindex="0">
-                            <span class="d-none d-sm-block">Upload new photo</span>
-                            <i class="bx bx-upload d-block d-sm-none"></i>
-                            <input name="image" type="file" id="auth_image" class="account-file-input" hidden accept="image/png, image/jpeg" />
-                        </label>
-                        @error('image')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                        <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-body">
                 <div class="row">
+                    <div class="col-12 m-3">
+                        <div class="button-wrapper">
+                            <div>
+                                @if ($user->hasMedia('images'))
+                                    <img class="dashboard-table-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
+                                @else
+                                    <p>No image</p>
+                                @endif
+                            </div>
+                            <label for="auth_image" class="btn btn-primary" tabindex="0">
+                                <span class="d-none d-sm-block">Upload new photo</span>
+                                <i class="bx bx-upload d-block d-sm-none"></i>
+                                <input name="image" type="file" id="auth_image" class="account-file-input" hidden accept="image/png, image/jpeg" />
+                            </label>
+                            @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-12 m-3">
                         <label for="name" class="form-label">Name</label>
                         <input class="form-control" type="text" id="name" name="name" value="{{ auth()->user()->name }}" autofocus />

@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\website;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Event;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class CatigoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $events = Event::where('status', 1)->get();
-        return view('website.pages.events.index', compact('events'));
+        //
     }
 
     /**

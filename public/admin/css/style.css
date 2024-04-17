@@ -120,7 +120,14 @@ p {
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
-
+.btn{
+    margin-bottom: unset !important;
+}
+.button-wrapper{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
 .media,
 .Thanks {
     margin-top: 20px;

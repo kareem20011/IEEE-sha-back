@@ -10,6 +10,13 @@
             @endif
             
             <div class="card-body">
+                <div class="mb-5">
+                    @if ($user->hasMedia('images'))
+                        <img style="width: 200px;" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
+                    @else
+                        <p>No image</p>
+                    @endif
+                </div>
                 <div class="mb-3">
                     <label>Name</label>
                     <input disabled type="text" class="form-control" value="{{ $user->name }}">
