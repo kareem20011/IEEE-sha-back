@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Board;
-use App\Models\Workshop;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BoardController extends Controller
@@ -23,7 +23,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        $categories = Workshop::with('category')->get();
+        $categories = Category::all();
         return view('admin.pages.boards.create', compact('categories'));
     }
 
@@ -60,7 +60,9 @@ class BoardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $board = Board::with('category')->find($id);
+        $categories = Category::all();
+        return view('admin.pages.boards.edit', compact('board', 'categories'));
     }
 
     /**
@@ -68,14 +70,38 @@ class BoardController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category_id' => 'required',
+            'status' => 'required|string',
+        ]);
+        $board = Board::find($id);
+        $board->update($request->except('_token', '_method'));
+        if ($request->has('image')) {
+            $board->clearMediaCollection('images');
+            $board->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('admin.boards.index')->with('status', 'board has been updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+        $board = Board::find($id);
+        $board->clearMediaCollection('images');
+        $board->delete();
+        return redirect()->route('admin.boards.index')->with('status', 'The board has been deleted.');
+    }
+    
+    public function delete(string $id)
+    {
+        $board = Board::find($id); 
+        return view('admin.pages.boards.delete', compact('board'));
     }
 }

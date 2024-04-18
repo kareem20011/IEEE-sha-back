@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.users.add');
+        return view('admin.pages.users.create');
     }
 
     /**
@@ -60,8 +60,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
-        return view('admin.pages.users.show', compact('user'));
+        //
     }
 
     /**
@@ -105,8 +104,14 @@ class UsersController extends Controller
             'password' => ['required', 'current_password'],
         ]);
         // return $request;
-        User::where('id', $id)->delete();
+        $user = User::where('id', $id)->delete();
+        $user->clearMediaCollection('images');
         session()->flash('success', 'User deleted successfully!');
         return redirect()->route('admin.users.index');
+    }
+
+    public function delete(Request $request, $id) {
+        $user = User::find($id);
+        return view('admin.pages.users.delete', compact('user'));
     }
 }

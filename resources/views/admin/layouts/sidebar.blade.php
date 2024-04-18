@@ -18,6 +18,19 @@
 
 
                 <li>
+                    <a href="#" class="{{ request()->is('admin/categories/*') || request()->is('admin/categories') ? 'active' : '' }}">
+                        <i class='bx bx-category icon'></i>
+                        Categories
+                        <i class='bx bx-chevron-right icon-right'></i>
+                        
+                    </a>
+                    <ul class="side-dropdown">
+                        <li><a class="{{ request()->is('admin/categories/create') ? 'active' : '' }}" href="{{ route( 'admin.categories.create' ) }}">Add category</a></li>
+                        <li><a href="{{ route( 'admin.categories.index' ) }}" class="{{ request()->is('admin/categories') ? 'active' : '' }}">Show all</a></li>
+                    </ul>
+                </li>
+
+                <li>
                     <a href="#" class="{{ request()->is('admin/events/*') || request()->is('admin/events') ? 'active' : '' }}">
                         <i class='bx bx-calendar-event icon'></i>
                         Events
@@ -32,7 +45,7 @@
 
                 <li>
                     <a href="#" class="{{ request()->is('admin/workshops/*') || request()->is('admin/workshops') ? 'active' : '' }}">
-                        <i class='bx bxs-user icon'></i>
+                        <i class='bx bxs-briefcase icon'></i>
                         Workshops
                         <i class='bx bx-chevron-right icon-right'></i>
                     </a>
@@ -44,7 +57,8 @@
 
                 <li>
                     <a href="#" class="{{ request()->is('admin/boards/*') || request()->is('admin/boards') ? 'active' : '' }}">
-                        <i class='bx bxs-user icon'></i>
+                        <!-- <i class='bx bxs-user icon'></i> -->
+                        <i class="fa-solid fa-users  me-4 ms-3"></i>
                         Boards
                         <i class='bx bx-chevron-right icon-right'></i>
                     </a>
@@ -76,7 +90,6 @@
                 <li>
                     <a href="/">
                     <box-icon type='solid' name='objects-horizontal-center'></box-icon>
-                        <!-- <i class='bx bxs-rfid icon'></i> -->
                         <i class="fa-solid fa-globe me-4 ms-3"></i>
                         Website
                     </a>

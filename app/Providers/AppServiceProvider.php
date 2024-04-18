@@ -27,11 +27,13 @@ class AppServiceProvider extends ServiceProvider
         $setting = Setting::getSetting();
         $about = About::getAbout();
         $recentEvents = Event::where('status', 1)->orderBy('expiry_date', 'desc')->limit(3)->get();
+        $recentWorkshops = Workshop::with('category')->where('status', 1)->orderBy('created_at', 'desc')->limit(3)->get();
 
         view()->share([
             'setting' => $setting,
             'about' => $about,
             'recentEvents' => $recentEvents,
+            'recentWorkshops' => $recentWorkshops,
         ]);
     }
 }

@@ -61,6 +61,7 @@
                     <label for="password" class="mt-3 mb-2">Enter your password to delete this user</label>
                     <input placeholder="Enter password here..." id="password" type="password" name="password" class="form-control">
                     <button type="submit" class="btn btn-danger">Delete</button>
+                    <a href="{{ route( 'admin.users.index' ) }}" type="submit" class="btn btn-secondary mt-2">Cancel</a>
                 </form>
             </div>
     </div>

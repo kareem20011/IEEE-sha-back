@@ -108,6 +108,12 @@ h6 {
 p {
     color: #7c8db5 !important;
 }
+.submit-btn{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: inherit;
+}
 .dashboard-table-image{
     width: 50px;
     height: 50px;

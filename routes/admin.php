@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\BoardController;
+use App\Http\Controllers\admin\CatigoryController;
 use App\Http\Controllers\admin\EventController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\UsersController;
@@ -19,15 +20,23 @@ Route::group(['as' => 'admin.'], function(){
         Route::post('/update', [SettingsController::class, 'update'])->name('update');
     });
 
-    Route::resource('boards', BoardController::class);
-    Route::resource('workshops', WorkshopController::class);
-    Route::resource('events', EventController::class);
-    Route::resource('users', UsersController::class);
+    Route::resource('categories', CatigoryController::class);
 
+    Route::resource('boards', BoardController::class);
+    Route::get('boards/delete/{board}', [BoardController::class, 'delete'])->name('boards.delete');
+
+    Route::resource('workshops', WorkshopController::class);
+    Route::get('workshops/delete/{workshop}', [WorkshopController::class, 'delete'])->name('workshops.delete');
+    
+    Route::resource('events', EventController::class);
+    Route::get('events/delete/{event}', [EventController::class, 'delete'])->name('events.delete');
+    
+    Route::resource('users', UsersController::class);
+    Route::get('users/delete/{user}', [UsersController::class, 'delete'])->name('users.delete');
 
     Route::group(['prefix' => 'about', 'as' => 'about.' ], function(){
         Route::get('/', [AboutController::class, 'edit'])->name('edit');
         Route::post('/', [AboutController::class, 'update'])->name('update');
     });
-    Route::post('users/delete/{id}', [UsersController::class, 'delete'])->name('user.delete');
+    
 });

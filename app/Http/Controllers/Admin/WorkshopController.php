@@ -44,7 +44,7 @@ class WorkshopController extends Controller
             $workshop->clearMediaCollection('images');
             $workshop->addMediaFromRequest('image')->toMediaCollection('images');
         }
-        return redirect()->route('admin.workshops.index')->with('status', 'Workshop has been add success');
+        return redirect()->route('admin.workshops.index')->with('status', 'Workshop has been added');
     }
 
     /**
@@ -60,7 +60,9 @@ class WorkshopController extends Controller
      */
     public function edit(string $id)
     {
-        return $id;
+        $categories = Category::all();
+        $workshop = Workshop::with('category')->find($id);
+        return view('admin.pages.workshops.edit', compact('workshop', 'categories'));
     }
 
     /**
@@ -68,14 +70,38 @@ class WorkshopController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category_id' => 'required',
+            'status' => 'required|string',
+        ]);
+        $workshop = Workshop::find($id);
+        $workshop->update($request->except('_token', '_method'));
+        if ($request->has('image')) {
+            $workshop->clearMediaCollection('images');
+            $workshop->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('admin.workshops.index')->with('status', 'Workshop has been updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+        $workshop = Workshop::find($id);
+        $workshop->clearMediaCollection('images');
+        $workshop->delete();
+        return redirect()->route('admin.workshops.index')->with('status', 'Your workshop has been deleted.');
+    }
+
+    public function delete(string $id)
+    {
+        $workshop = Workshop::find($id);
+        return view('admin.pages.workshops.delete', compact('workshop'));
     }
 }

@@ -73,23 +73,34 @@ https://templatemo.com/tm-541-host-cloud
         </div>
         @if(auth()->user())
         <div class="functional-buttons">
-          <ul>
-            <li>
-              <form method="POST" action="{{ route('logout') }}" id="signOut">
+
+
+
+          <div class="dropdown me-lg-5 me-md-5">
+            <span style="cursor: pointer; color: white" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              @if( auth()->user()->role == 'admin' )
+              <a class="dropdown-item" href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+              @endif
+              <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
                   @csrf
                   <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
-                </form>
-            </li>
-            @if( auth()->user()->role == 'admin' )
-            <li><a href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a></li>
-            @endif
-          </ul>
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+
         </div>
         @else
           <div class="functional-buttons">
             <ul>
               <li><a href="{{ route( 'login' ) }}">Log in</a></li>
-              <li><a href="{{ route( 'register' ) }}">Sign Up</a></li>
             </ul>
           </div>
         @endif

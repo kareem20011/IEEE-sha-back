@@ -364,6 +364,7 @@ nav {
 .navbar .navbar-nav .nav-link.show,
 .navbar .navbar-nav .show > .nav-link {
   background-color: #fa991c;
+  color: #f8f3f2 !important;
   border-radius: 5px;
 }
 .navbar .navbar-toggler-icon {
@@ -1346,7 +1347,7 @@ footer .sub-footer a {
     color: #1e1e1e !important;
   }
   .navbar .navbar-nav .active > .nav-link {
-    color: #00bcd4 !important;
+    color: #f8f3f2 !important;
   }
   .about-us .left-image {
     margin-bottom: 30px;

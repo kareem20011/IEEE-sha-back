@@ -11,7 +11,9 @@
                     {{ session('success') }}
                 </div>
             @endif
-            
+            <div class="card-header">
+                <h4>Edit user</h4>
+            </div>
             <div class="card-body">
                 <div class="mb-3">
                     <label>Name</label>
@@ -46,11 +48,15 @@
                 <div class="mb-3">
                     <div class="d-flex align-items-start align-items-sm-center">
                         <div class="button-wrapper">
-                            <p class="text-muted mb-0">Upload image JPG, PNG.</p>
-                            <label for="admin_update" class="btn btn-primary" tabindex="0">
+                            @if($user->hasMedia('images'))
+                                <img class="dashboard-table-image" src="{{ $user->getFirstMedia('images')->getUrl() }}" alt="{{ $user->title }}">
+                            @else
+                                <p>No image</p>
+                            @endif
+                            <label for="user_image" class="btn btn-primary" tabindex="0">
                                 <span class="d-none d-sm-block">Upload new photo</span>
                                 <i class="bx bx-upload d-block d-sm-none"></i>
-                                <input name="image" type="file" id="admin_update" class="account-file-input" hidden accept="image/png, image/jpeg" />
+                                <input name="image" type="file" id="user_image" class="account-file-input" hidden accept="image/png, image/jpeg" />
                             </label>
                             @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -68,6 +74,9 @@
                 <button class="btn btn-primary">Submit</button>
             </div>
         </form>
+    </div>
+    <div class="container">
+      <a href="{{ route( 'admin.users.index' ) }}" class="btn btn-info ms-0 mt-3 col-12">Go back</a>
     </div>
 </div>
 @endsection

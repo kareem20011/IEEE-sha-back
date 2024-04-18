@@ -16,8 +16,9 @@ class EventController extends Controller
      */
     public function index()
     {
+        $counter = 0;
         $events = Event::all();
-        return view('admin.pages.events.index', compact('events'));
+        return view('admin.pages.events.index', compact('events', 'counter'));
     }
 
     /**
@@ -45,7 +46,7 @@ class EventController extends Controller
             $event->clearMediaCollection('images');
             $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
         }
-        return redirect()->back()->with([
+        return redirect()->route('admin.events.index')->with([
             'status' => 'Your event has been added.',
         ]);
     }
@@ -69,7 +70,8 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+        return view('admin.pages.events.edit', compact('event'));
     }
 
     /**
@@ -77,14 +79,39 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',  // Title validation
+            'description' => 'required|string',   // Description validation
+            'expiry_date' => 'date',      // date validation
+            'number_of_tickets' => 'required|integer|min:1', // Number of tickets validation
+            'status' => 'required', // Status validation with allowed values
+          ]);
+        $event = Event::find($id);
+        if($request->has('image')){
+            $event->clearMediaCollection('images');
+            $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
+        }
+        $event->update($request->except('_token', '_method'));
+        return redirect()->route('admin.events.index')->with('status', 'Your event has been updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+        $event = Event::find($id);
+        $event->clearMediaCollection('images');
+        $event->delete();
+        return redirect()->route('admin.events.index')->with('status', 'Your event has been deleted.');
+    }
+    
+    public function delete(string $id)
+    {
+        $event = Event::find($id);
+        return view('admin.pages.events.delete', compact('event'));
     }
 }

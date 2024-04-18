@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CatigoryController extends Controller
@@ -12,7 +13,9 @@ class CatigoryController extends Controller
      */
     public function index()
     {
-        //
+        $counter = 0;
+        $categories = Category::all();
+        return view('admin.pages.categories.index', compact('categories', 'counter'));
     }
 
     /**
@@ -20,7 +23,7 @@ class CatigoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.categories.create');
     }
 
     /**
@@ -28,7 +31,14 @@ class CatigoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',  // Title validation
+            'status' => 'required', // Status validation with allowed values
+        ]);
+        Category::create($request->except('_token'));
+        return redirect()->route('admin.categories.index')->with([
+            'status' => 'Your event has been added.',
+        ]);
     }
 
     /**
@@ -36,7 +46,8 @@ class CatigoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.pages.categories.delete', compact('category'));
     }
 
     /**
@@ -44,7 +55,8 @@ class CatigoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.pages.categories.edit', compact('category'));
     }
 
     /**
@@ -52,14 +64,19 @@ class CatigoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        Category::where('id', $id)->update($request->except('_token', '_method'));
+        return redirect()->route('admin.categories.index')->with('status', 'Your category has been updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request,string $id)
     {
-        //
+        $request->validate([
+            'password' => ['required', 'current_password'],
+        ]);
+        Category::where('id', $id)->delete();
+        return redirect()->route('admin.categories.index')->with('status', 'Your category has been deleted.');
     }
 }

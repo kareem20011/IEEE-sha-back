@@ -17,30 +17,40 @@
       <th>Role</th>
       <th>Action</th>
     </tr>
-    @foreach($users as $user)
-    @if($user->id == auth()->user()->id && auth()->user()->role == 'admin')
-      @continue
+    @if(count($users) < 2)
+      <td colspan="10" class="p-5">
+          <p class="text-center">No items found.</p>
+      </td>
     @else
-    <tr>
-      <td>#{{ $user->id }}</td>
-      <td>{{ $user->name }}</td>
-      <td>{{ $user->email }}</td>
-      <td>
-        @if ($user->hasMedia('images'))
-        <img class="dashboard-table-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
+      @foreach($users as $user)
+        @if($user->id == auth()->user()->id && auth()->user()->role == 'admin')
+          @continue
         @else
-          <p>No image</p>
+        <tr>
+          <td>#{{ $user->id }}</td>
+          <td>{{ $user->name }}</td>
+          <td>{{ $user->email }}</td>
+          <td>
+            @if ($user->hasMedia('images'))
+            <img class="dashboard-table-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="{{ $user->name }}">
+            @else
+              <p>No image</p>
+            @endif
+          </td>
+          <td>{{ $user->role }}</td>
+          
+          <td>
+            <a href="{{ route( 'admin.users.edit', $user->id ) }}"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a class="text-danger" href="{{ route( 'admin.users.delete', $user->id ) }}"><i class="fa-solid fa-trash"></i></a>
+          </td>
+        </tr>
         @endif
-      </td>
-      <td>{{ $user->role }}</td>
-      <td>
-        <a href="{{ route( 'admin.users.show', $user->id ) }}">Show</a>
-        <a href="{{ route( 'admin.users.edit', $user->id ) }}">Edit</a>
-      </td>
-    </tr>
+      @endforeach
     @endif
-    @endforeach
   </table>
+  <div class="container">
+      <a href="{{ route( 'admin.users.create' ) }}" class="btn btn-info ms-0 mt-3 col-12">Create new</a>
+  </div>
 </div>
 
 

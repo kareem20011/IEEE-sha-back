@@ -86,5 +86,8 @@
             </div>
         </form>
     </div>
+    <div class="container">
+      <a href="{{ route( 'admin.users.index' ) }}" class="btn btn-info ms-0 mt-3 col-12">Show all</a>
+  </div>
 </div>
 @endsection
