@@ -17,6 +17,8 @@
   <link href="{{ asset( 'website/css/bootstrap.min.css' ) }}" rel="stylesheet">
 
   <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="{{ asset( 'website/aos/dist/aos.css' ) }}">
+
   <link rel="stylesheet" href="{{ asset( 'website/css/all.min.css' ) }}">
   <link rel="stylesheet" href="{{ asset( 'website/css/style.css' ) }}">
   <link rel="stylesheet" href="{{ asset( 'website/css/owl.css' ) }}">
@@ -214,8 +216,7 @@ https://templatemo.com/tm-541-host-cloud
         </div>
         <div class="col-md-12">
           <div class="sub-footer">
-            <p>Copyright &copy; 2020 Cloud Hosting Company
-              - Designed by <a rel="nofollow" href="https://templatemo.com">TemplateMo</a></p>
+            <p>Copyright &copy; 2024</p>
           </div>
         </div>
       </div>
@@ -233,11 +234,16 @@ https://templatemo.com/tm-541-host-cloud
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset( 'website/js/jquery.min.js' ) }}"></script>
   <script src="{{ asset( 'website/js/bootstrap.bundle.js' ) }}"></script>
-
+  
   <!-- Additional Scripts -->
   <script src="{{ asset( 'website/js/custom.js' ) }}"></script>
   <script src="{{ asset( 'website/js/owl.js' ) }}"></script>
   <script src="{{ asset( 'website/js/accordions.js' ) }}"></script>
+  <script src="{{ asset( 'website/aos/dist/aos.js' ) }}"></script>
+
+  <script>
+    AOS.init();
+  </script>
 
 
   <script language="text/Javascript">
