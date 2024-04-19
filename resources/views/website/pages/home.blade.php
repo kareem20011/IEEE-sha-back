@@ -4,7 +4,7 @@
 <div class="header-content p-lg-5 p-3">
 
     <div class="text">
-    <h3>For Better Future</h3>
+    <h3>Debugging The Path To Success</h3>
     <h1>IEEE Shorouk <br> Branch</h1>
     </div>
 

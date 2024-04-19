@@ -15,11 +15,13 @@ $user = auth()->user();
                     @if ($user && $user->hasMedia('images'))
                         <img src="{{ $user->getFirstMediaUrl('images') }}" alt="">
                     @else
-                        <img src="{{ asset( 'temp/images/avatar/avatar-1.png' ) }}" alt="">
+                        <div style="font-size: 30px;">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
                     @endif
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fa fa-user size-icon-1"></i> <span>My
+                    <a class="dropdown-item" href="{{ route('admin.profile.edit') }}"><i class="fa fa-user size-icon-1"></i> <span>My
                             Profile</span></a>
                     <a class="dropdown-item" href="{{ route('admin.settings.edit') }}"><i class="fa fa-cog size-icon-1"></i>
                         <span>Settings</span></a>

@@ -48,9 +48,6 @@
 
 			@yield('admin_content')
 
-			<!-- Start Footer -->
-			@include('admin.layouts.footer')
-			<!-- End Footer -->
 	
 		</div>
 	</div>

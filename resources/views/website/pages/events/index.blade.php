@@ -39,7 +39,12 @@
                                     <p class="text-success h6">{{ $event->expiry_date }}</p>
                                 @endif
                             </span>
-                            <a href="#" class="btn btn-theme {{ \Carbon\Carbon::parse($event->expiry_date)->isPast() ? 'd-none' : 'd-block' }}">Book <i class="fa-solid fa-caret-right"></i></a>
+                            <a href="{{ route( 'events.show', $event->id ) }}" class="btn btn-theme">View</a>
+                            <!-- <form method="post" action="{{ route( 'booking.store' ) }}">
+                                @csrf
+                                <input type="hidden" name="event_id" value="{{  $event->id }}">
+                                <button class="btn btn-theme {{ \Carbon\Carbon::parse($event->expiry_date)->isPast() ? 'd-none' : 'd-block' }}">Book <i class="fa-solid fa-caret-right"></i></button>
+                            </form> -->
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\BoardController;
 use App\Http\Controllers\admin\CatigoryController;
 use App\Http\Controllers\admin\EventController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\WorkshopController;
@@ -14,6 +15,13 @@ Route::group(['as' => 'admin.'], function(){
     Route::get('/dashboard', function () {
         return view('admin.pages.dashboard');
     })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
+
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile', [ProfileController::class, 'password'])->name('profile.password');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     Route::group(['prefix' => 'settings', 'as' => 'settings.' ], function(){
         Route::get('/', [SettingsController::class, 'edit'])->name('edit');

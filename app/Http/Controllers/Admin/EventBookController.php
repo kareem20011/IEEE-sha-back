@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\website;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
@@ -8,15 +8,14 @@ use App\Models\EventBook;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class EventController extends Controller
+class EventBookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $events = Event::all();
-        return view('website.pages.events.index', compact('events'));
+        //
     }
 
     /**
@@ -32,7 +31,12 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        EventBook::create([
+            'user_id' => auth()->user()->id,
+            'event_id' => $request->event_id
+        ]);
+        return  redirect()->back();
+        // return $hasBooked;
     }
 
     /**
@@ -40,12 +44,7 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $user_id = auth()->user()->id;
-        $event_id = $id;
-        $event = Event::find($id);
-        $hasBooked = EventBook::where('user_id', $user_id)->where('event_id', $event_id)->get();
-        // return $hasBooked;
-        return view('website.pages.events.show', compact('event', 'hasBooked'));
+        //
     }
 
     /**
@@ -69,6 +68,7 @@ class EventController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        EventBook::where('event_id', $id)->delete();
+        return redirect()->back();
     }
 }

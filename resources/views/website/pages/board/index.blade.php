@@ -32,6 +32,7 @@
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $board->title }}</h5>
+                        <p class="card-text text-success">{{ $board->role }}</p>
                         <p class="card-text">{{ $board->description }}</p>
                     </div>
                 </div>

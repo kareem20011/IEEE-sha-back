@@ -1,34 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\website;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
-
-use function Laravel\Prompts\password;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
-        return view('admin.pages.profile.edit', [
+        return view('website.pages.profile.edit', [
             'user' => $request->user(),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = User::find(auth()->user()->id);
@@ -45,12 +38,15 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('admin.profile.edit')->with('status', 'Your profile has been updated');
+        return Redirect::route('profile.edit')->with('status', 'Your profile has been updated');
     }
+
+
+
 
     public function password(Request $request){
         $request->validate([
-            'current_password' => 'required|string',
+            'current_password' => 'required|string|current_password',
             'password' => 'required|confirmed|min:8',
             'password_confirmation' => 'required|string',
         ]);
@@ -71,13 +67,15 @@ class ProfileController extends Controller
     }
 
 
-    /**
-     * Delete the user's account.
-     */
+
+
+
+
+
     public function destroy(Request $request)
     {
         $request->validate([
-            'password' => ['required', 'current_password'],
+            'password_delete' => ['required', 'current_password'],
         ]);
         
 
@@ -88,5 +86,4 @@ class ProfileController extends Controller
         return Redirect::to('/');
 
     }
-
 }

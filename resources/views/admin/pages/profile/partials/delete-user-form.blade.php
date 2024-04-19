@@ -8,7 +8,7 @@
                 <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
             </div>
         </div>
-        <form method="post" action="{{ route('profile.destroy') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('admin.profile.destroy') }}" enctype="multipart/form-data">
             @csrf
             @method('delete')
             <input type="hidden" name="id" value="{{ auth()->user()->id }}">

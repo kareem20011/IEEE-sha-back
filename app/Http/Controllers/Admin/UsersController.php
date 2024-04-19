@@ -44,7 +44,7 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'admin',
+            'role' => $request->role,
         ]);
 
         if($request->has('image')){

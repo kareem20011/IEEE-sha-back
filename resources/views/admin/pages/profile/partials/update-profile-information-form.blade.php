@@ -1,6 +1,6 @@
 <div class="row">
     <div class="card">
-        <form method="POST" action="{{ route( 'profile.update' ) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route( 'admin.profile.update' ) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="card-body">

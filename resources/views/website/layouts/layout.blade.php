@@ -84,12 +84,19 @@ https://templatemo.com/tm-541-host-cloud
             </span>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               @if( auth()->user()->role == 'admin' )
-              <a class="dropdown-item" href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a>
-              @endif
+                <a class="dropdown-item" href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+                <a class="dropdown-item" href="{{ route( 'admin.profile.edit' ) }}">Profile</i></a>
+                <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
+                    @csrf
+                    <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
+                </form>
+              @else
+              <a class="dropdown-item" href="{{ route( 'profile.edit' ) }}">Profile</i></a>
               <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
                   @csrf
                   <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
               </form>
+              @endif
             </div>
           </div>
 

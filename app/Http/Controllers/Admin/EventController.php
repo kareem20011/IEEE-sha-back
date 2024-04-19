@@ -56,13 +56,14 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $time = Carbon::now();
-        $event = Event::find(3);
-        $event_time = $event->expiry_date;
-        $ex = $time->diffInDays($event_time);
-        if($ex < 1){
-            $ex = "this event expaierd";
-        }
+        // $time = Carbon::now();
+        // $event = Event::find(3);
+        // $event_time = $event->expiry_date;
+        // $ex = $time->diffInDays($event_time);
+        // if($ex < 1){
+        //     $ex = "this event expaierd";
+        // }
+        
     }
 
     /**

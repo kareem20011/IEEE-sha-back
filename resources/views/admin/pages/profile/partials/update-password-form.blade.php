@@ -50,7 +50,7 @@
     <div class="card">
 
         <div class="card-body">
-            <form method="post" action="{{ route('profile.password') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('admin.profile.password') }}" enctype="multipart/form-data">
                 @csrf
                 
                 <div class="row">

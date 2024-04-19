@@ -17,4 +17,9 @@ class Event extends Model implements HasMedia
         'number_of_tickets',
         'status',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(EventBook::class);
+    }
 }

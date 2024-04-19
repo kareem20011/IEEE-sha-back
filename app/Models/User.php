@@ -27,6 +27,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'status'
     ];
 
+    public function events()
+    {
+        return $this->hasMany(EventBook::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
