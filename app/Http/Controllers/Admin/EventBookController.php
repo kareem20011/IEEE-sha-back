@@ -79,7 +79,8 @@ class EventBookController extends Controller
      */
     public function destroy(string $id)
     {
-        EventBook::where('event_id', $id)->delete();
+        $event = EventBook::where('event_id', $id)->delete();
+        $event->clearMediaCollection('images');
         return redirect()->back()->with(['status' => 'Event has been cancelled']);
     }
 }

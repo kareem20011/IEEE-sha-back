@@ -9,7 +9,7 @@
     </div>
 
     <div class="img mb-5">
-    <img src="{{ asset( 'temp/images/img1.png' ) }}" alt="">
+    <img src="{{ asset( 'website/images/img1.png' ) }}" alt="">
     </div>
 
 </div>

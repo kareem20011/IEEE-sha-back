@@ -51,6 +51,12 @@
                     </div>
                     @if(\Carbon\Carbon::parse($event->expiry_date)->isPast())
                     <p class="text-danger">can't book!</p>
+                    @elseif(!$user)
+                    <form method="post" action="{{ route( 'booking.store' ) }}">
+                        @csrf
+                        <input type="hidden" name="event_id" value="{{ $event->id }}">
+                        <button class="btn btn-theme">Book</button>
+                    </form>
                     @elseif($hasBooked->isEmpty())
                     <form method="post" action="{{ route( 'booking.store' ) }}">
                         @csrf

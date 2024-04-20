@@ -40,12 +40,20 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        $user_id = auth()->user()->id;
-        $event_id = $id;
-        $event = Event::find($id);
-        $hasBooked = EventBook::where('user_id', $user_id)->where('event_id', $event_id)->get();
-        // return $hasBooked;
-        return view('website.pages.events.show', compact('event', 'hasBooked'));
+        $user = auth()->user();
+        if($user){
+            $user_id = $user->id;
+            $event_id = $id;
+            $event = Event::find($id);
+            $hasBooked = EventBook::where('user_id', $user_id)->where('event_id', $event_id)->get();
+            // return $hasBooked;
+            return view('website.pages.events.show', compact('event', 'hasBooked', 'user'));
+        }
+        else{
+            $event = Event::find($id);
+            return view('website.pages.events.show', compact('event', 'user'));
+
+        }
     }
 
     /**
