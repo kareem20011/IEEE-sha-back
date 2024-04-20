@@ -3,12 +3,14 @@
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\BoardController;
 use App\Http\Controllers\admin\CatigoryController;
+use App\Http\Controllers\admin\EventBookController;
 use App\Http\Controllers\admin\EventController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\admin\WorkshopController;
 use App\Models\Event;
+use App\Models\EventBook;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.'], function(){
@@ -38,7 +40,10 @@ Route::group(['as' => 'admin.'], function(){
     
     Route::resource('events', EventController::class);
     Route::get('events/delete/{event}', [EventController::class, 'delete'])->name('events.delete');
-    
+
+    Route::resource('books', EventBookController::class);
+
+
     Route::resource('users', UsersController::class);
     Route::get('users/delete/{user}', [UsersController::class, 'delete'])->name('users.delete');
 

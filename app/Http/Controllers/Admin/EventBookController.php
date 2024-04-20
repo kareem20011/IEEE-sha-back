@@ -8,6 +8,8 @@ use App\Models\EventBook;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class EventBookController extends Controller
 {
     /**
@@ -15,7 +17,16 @@ class EventBookController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with('events')->get();
+
+
+        $usersWithEvents = $users->filter(function ($user) {
+            return $user->events->isNotEmpty();
+        });
+
+
+        // return $usersWithEvents;
+        return view('admin.pages.books.index', compact('usersWithEvents'));
     }
 
     /**
@@ -35,7 +46,7 @@ class EventBookController extends Controller
             'user_id' => auth()->user()->id,
             'event_id' => $request->event_id
         ]);
-        return  redirect()->back();
+        return  redirect()->back()->with(['status' => 'Event has been booked']);
         // return $hasBooked;
     }
 
@@ -69,6 +80,6 @@ class EventBookController extends Controller
     public function destroy(string $id)
     {
         EventBook::where('event_id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with(['status' => 'Event has been cancelled']);
     }
 }

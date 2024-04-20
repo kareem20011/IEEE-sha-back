@@ -20,6 +20,6 @@ class Event extends Model implements HasMedia
 
     public function users()
     {
-        return $this->hasMany(EventBook::class);
+        return $this->belongsToMany(User::class, 'event_books');
     }
 }

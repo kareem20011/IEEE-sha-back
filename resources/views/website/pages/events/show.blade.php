@@ -28,6 +28,9 @@
 <div class="about-us">
     <div class="container">
         <div class="row d-flex justify-content-between align-items-center">
+            @if(session('status'))
+                <div class="alert alert-success">{{ session('status') }}</div>
+            @endif
             <div class="col-md-6">
                 <div class="left-image">
                     @if($event->hasMedia('images'))

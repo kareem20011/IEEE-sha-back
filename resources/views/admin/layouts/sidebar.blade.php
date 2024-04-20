@@ -88,6 +88,13 @@
                 </li>
 
                 <li>
+                    <a href="{{ route( 'admin.books.index' ) }}" class="{{ request()->is('admin/books') ? 'active' : '' }}">
+                        <i class="fa fa-ticket mx-3" aria-hidden="true"></i>
+                        Books
+                    </a>
+                </li>
+
+                <li>
                     <a href="/">
                     <box-icon type='solid' name='objects-horizontal-center'></box-icon>
                         <i class="fa-solid fa-globe me-4 ms-3"></i>

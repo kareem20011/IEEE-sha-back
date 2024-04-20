@@ -1,3 +1,6 @@
+@php
+$user = auth()->user();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +83,11 @@ https://templatemo.com/tm-541-host-cloud
 
           <div class="dropdown me-lg-5 me-md-5">
             <span style="cursor: pointer; color: white" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              @if($user->hasMedia('images'))
+              <img title="{{ $user->email }}" class="website-image" src="{{ $user->getFirstMediaUrl('images') }}" alt="">
+              @else
               <i class="fa-solid fa-user"></i>
+              @endif
             </span>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               @if( auth()->user()->role == 'admin' )

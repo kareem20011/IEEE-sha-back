@@ -40,7 +40,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('verified', 'auth')->group(function(){
-    Route::resource('event/booking', EventBookController::class);
+    Route::post('event/booking', [EventBookController::class, 'store'])->name('booking.store');
+    Route::delete('event/booking/{booking}', [EventBookController::class, 'destroy'])->name('booking.destroy');
 });
 
 require __DIR__.'/auth.php';

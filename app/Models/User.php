@@ -29,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function events()
     {
-        return $this->hasMany(EventBook::class);
+        return $this->belongsToMany(Event::class, 'event_books');
     }
 
     /**

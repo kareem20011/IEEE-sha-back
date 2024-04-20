@@ -39,7 +39,7 @@
                                     <p class="text-success h6">{{ $event->expiry_date }}</p>
                                 @endif
                             </span>
-                            <a href="{{ route( 'events.show', $event->id ) }}" class="btn btn-theme">View</a>
+                            <a href="{{ route( 'events.show', $event->id ) }}" class="btn btn-primary">View</a>
                             <!-- <form method="post" action="{{ route( 'booking.store' ) }}">
                                 @csrf
                                 <input type="hidden" name="event_id" value="{{  $event->id }}">
