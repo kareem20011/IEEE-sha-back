@@ -170,14 +170,12 @@ https://templatemo.com/tm-541-host-cloud
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="footer-item">
             <div class="footer-heading">
-              <h2>Hosting Plans</h2>
+              <h2>Latest Events</h2>
             </div>
             <ul class="footer-list">
-              <li><a href="#">Basic Cloud 5X</a></li>
-              <li><a href="#">Cloud VPS 10X</a></li>
-              <li><a href="#">Advanced Cloud</a></li>
-              <li><a href="#">Custom Designs</a></li>
-              <li><a href="#">Special Solutions</a></li>
+              @foreach($recentEvents as $recentEvent)
+              <li><a href="{{ route( 'events.index' ) }}">{{ $recentEvent->title }}</a></li>
+              @endforeach
             </ul>
           </div>
         </div>
