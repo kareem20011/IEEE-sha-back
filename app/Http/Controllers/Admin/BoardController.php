@@ -23,7 +23,7 @@ class BoardController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('status', 1)->get();
         return view('admin.pages.boards.create', compact('categories'));
     }
 
@@ -61,7 +61,7 @@ class BoardController extends Controller
     public function edit(string $id)
     {
         $board = Board::with('category')->find($id);
-        $categories = Category::all();
+        $categories = Category::where('status', 1);
         return view('admin.pages.boards.edit', compact('board', 'categories'));
     }
 

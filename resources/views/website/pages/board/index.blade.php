@@ -21,7 +21,12 @@
             <img  class="d-block mx-auto my-5 w-50" src="{{ asset( 'website/images/9264820.png' ) }}" alt="">
         </div>
         @else
+        
             @foreach($categories as $category)
+            @if($category->boards->isEmpty() || $category->status == 0)
+                @continue
+            @else
+            
             <div class="content my-5">
                 <div class="workshop-title">
                     <h2>{{ $category->title }}</h2>
@@ -44,6 +49,7 @@
 
                 </div>
             </div>
+            @endif
             @endforeach
         @endif
     </div>

@@ -11,6 +11,7 @@ class BoardController extends Controller
     public function index()
     {
         $categories = Category::with('boards')->get();
+        // return $categories;
         return view('website.pages.board.index', compact('categories'));
     }
 }

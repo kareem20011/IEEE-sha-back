@@ -23,7 +23,7 @@ class WorkshopController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('status', 1)->get();
         return view('admin.pages.workshops.create', compact('categories'));
     }
 
@@ -60,7 +60,7 @@ class WorkshopController extends Controller
      */
     public function edit(string $id)
     {
-        $categories = Category::all();
+        $categories = Category::where('status', 1)->get();
         $workshop = Workshop::with('category')->find($id);
         return view('admin.pages.workshops.edit', compact('workshop', 'categories'));
     }

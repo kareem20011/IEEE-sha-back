@@ -23,6 +23,9 @@
             </div>
 
             @foreach($categories as $category)
+            @if($category->workshops->isEmpty() || $category->status == 0)
+                @continue
+            @else
             <div class="content my-5">
                 <div class="workshop-title">
                     <h2>{{ $category->title }}</h2>
@@ -44,6 +47,7 @@
 
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     @endif
