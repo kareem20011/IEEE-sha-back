@@ -50,7 +50,7 @@
                         <i class='bx bx-chevron-right icon-right'></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a class="{{ request()->is('admin/workshops/create') ? 'active' : '' }}" href="{{ route( 'admin.workshops.create' ) }}">Add user/admin</a></li>
+                        <li><a class="{{ request()->is('admin/workshops/create') ? 'active' : '' }}" href="{{ route( 'admin.workshops.create' ) }}">Add workshops</a></li>
                         <li><a href="{{ route( 'admin.workshops.index' ) }}" class="{{ request()->is('admin/workshops') ? 'active' : '' }}">Show all</a></li>
                     </ul>
                 </li>
@@ -63,7 +63,7 @@
                         <i class='bx bx-chevron-right icon-right'></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a class="{{ request()->is('admin/boards/create') ? 'active' : '' }}" href="{{ route( 'admin.boards.create' ) }}">Add user/admin</a></li>
+                        <li><a class="{{ request()->is('admin/boards/create') ? 'active' : '' }}" href="{{ route( 'admin.boards.create' ) }}">Add boards</a></li>
                         <li><a href="{{ route( 'admin.boards.index' ) }}" class="{{ request()->is('admin/boards') ? 'active' : '' }}">Show all</a></li>
                     </ul>
                 </li>
@@ -75,7 +75,7 @@
                         <i class='bx bx-chevron-right icon-right'></i>
                     </a>
                     <ul class="side-dropdown">
-                        <li><a class="{{ request()->is('admin/users/create') ? 'active' : '' }}" href="{{ route( 'admin.users.create' ) }}">Add user/admin</a></li>
+                        <li><a class="{{ request()->is('admin/users/create') ? 'active' : '' }}" href="{{ route( 'admin.users.create' ) }}">Add users</a></li>
                         <li><a href="{{ route( 'admin.users.index' ) }}" class="{{ request()->is('admin/users') ? 'active' : '' }}">Show all</a></li>
                     </ul>
                 </li>
