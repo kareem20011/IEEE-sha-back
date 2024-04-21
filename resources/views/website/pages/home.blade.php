@@ -41,6 +41,7 @@
 
 
 <!-- Services Starts Here -->
+@if(!$recentWorkshops->isEmpty())
 <div data-aos="fade-up" class="services-section">
     <div class="container">
         <div class="row">
@@ -66,6 +67,7 @@
     <a href="{{ route('workshops.index') }}" class="btn btn-theme mb-3">Show more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 </div>
+@endif
 <!-- Services Ends Here -->
 
 
@@ -73,6 +75,7 @@
 
 
 <!-- Events Starts Here -->
+@if(!$recentEvents->isEmpty())
 <div data-aos="fade-up" class="services-section">
     <div class="container">
         <div class="row">
@@ -102,6 +105,7 @@
     <a href="{{ route('events.index') }}" class="btn btn-theme mb-3">Show more <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 </div>
+@endif
 <!-- Events Ends Here -->
 
 

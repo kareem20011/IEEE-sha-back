@@ -12,7 +12,11 @@
 
 
     <!-- Start WorkShops -->
-    
+    @if($categories->isEmpty())
+    <div>
+        <img  class="d-block mx-auto my-5 w-50" src="{{ asset( 'website/images/9264820.png' ) }}" alt="">
+    </div>
+    @else
     <div class="container-fluid my-5">
             <div class="main-heading">
                 <h2>WorkShops Section</h2>
@@ -42,7 +46,7 @@
             </div>
             @endforeach
         </div>
-        
+    @endif
     <!-- End WorkShops -->
 
 

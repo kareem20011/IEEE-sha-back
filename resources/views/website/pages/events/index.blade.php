@@ -16,8 +16,10 @@
             <h2>Events Section</h2>
         </div>
         <div class="d-flex justify-content-center flex-wrap">
-            @if(count($events) < 1)
-            <h1>No items</h1>
+            @if($events->isEmpty())
+                <div>
+                    <img  class="d-block mx-auto my-5 w-50" src="{{ asset( 'website/images/9264820.png' ) }}" alt="">
+                </div>
             @else
 
             @foreach($events as $event)
