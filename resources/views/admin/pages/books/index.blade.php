@@ -23,11 +23,6 @@
                 @endforeach
                 
             </ul>
-            <form class="d-flex justify-content-end" method="post" action="{{ route( 'booking.destroy', $event->id ) }}">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger">Cancel</button>
-            </form>
         </div>
         @endforeach
     </div>

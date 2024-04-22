@@ -11,7 +11,7 @@
     
     <tr>
       <th>Id</th>
-      <th>Title</th>
+      <th>Name</th>
       <th>Role</th>
       <th>Description</th>
       <th>Category</th>

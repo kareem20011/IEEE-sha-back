@@ -61,7 +61,7 @@ class BoardController extends Controller
     public function edit(string $id)
     {
         $board = Board::with('category')->find($id);
-        $categories = Category::where('status', 1);
+        $categories = Category::where('status', 1)->get();
         return view('admin.pages.boards.edit', compact('board', 'categories'));
     }
 

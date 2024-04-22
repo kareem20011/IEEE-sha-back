@@ -23,7 +23,7 @@
             @else
 
             @foreach($events as $event)
-
+            @if($event->status == 1)
                 <div class="card m-3" style="width: 20rem;">
                     @if($event->hasMedia('images'))
                         <img src="{{ $event->getFirstMediaUrl('images') }}" class="card-img-top" alt="...">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-
+            @endif
             @endforeach
 
 

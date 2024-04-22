@@ -38,10 +38,10 @@ class EventController extends Controller
             'title' => 'required|string|max:255',  // Title validation
             'description' => 'required|string',   // Description validation
             'expiry_date' => 'date',      // date validation
-            'number_of_tickets' => 'required|integer|min:1', // Number of tickets validation
+            'number_of_tickets' => 'nullable|integer|min:1', // Number of tickets validation
             'status' => 'required', // Status validation with allowed values
           ]);
-        $event = Event::create($request->except('_token'));
+        $event = Event::create($request->except('_token', 'number_of_tickets'));
         if($request->has('image')){
             $event->clearMediaCollection('images');
             $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
@@ -78,7 +78,7 @@ class EventController extends Controller
             'title' => 'required|string|max:255',  // Title validation
             'description' => 'required|string',   // Description validation
             'expiry_date' => 'date',      // date validation
-            'number_of_tickets' => 'required|integer|min:1', // Number of tickets validation
+            'number_of_tickets' => 'nullable|integer|min:1', // Number of tickets validation
             'status' => 'required', // Status validation with allowed values
           ]);
         $event = Event::find($id);
@@ -86,7 +86,7 @@ class EventController extends Controller
             $event->clearMediaCollection('images');
             $event->addMediaFromRequest('image')->usingName($event->title)->toMediaCollection('images');
         }
-        $event->update($request->except('_token', '_method'));
+        $event->update($request->except('_token', '_method', 'number_of_tickets'));
         return redirect()->route('admin.events.index')->with('status', 'Your event has been updated.');
     }
 

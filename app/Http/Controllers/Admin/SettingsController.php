@@ -29,6 +29,11 @@ class SettingsController extends Controller
                 'nullable', // Allow empty value
                 'numeric',
             ],
+            'linkedin' => [
+                'nullable',
+                'url', // Validate as a URL
+                'starts_with:https://www.linkedin.com/', // Enforce specific format (optional)
+            ],
             'facebook' => [
                 'nullable',
                 'url', // Validate as a URL

@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 @section('admin_login')
 <div id="auth">
-    <div class="row container m-auto">
+    <div class="row m-auto">
         <div class="col-12">
             <div id="auth-right">
                 <h1 class="auth-title">Log in.</h1>    

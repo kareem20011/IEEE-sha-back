@@ -91,18 +91,20 @@ https://templatemo.com/tm-541-host-cloud
             </span>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               @if( auth()->user()->role == 'admin' )
-                <a class="dropdown-item" href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a>
-                <a class="dropdown-item" href="{{ route( 'admin.profile.edit' ) }}">Profile</i></a>
-                <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
-                    @csrf
-                    <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
-                </form>
-              @else
-              <a class="dropdown-item" href="{{ route( 'profile.edit' ) }}">Profile</i></a>
+              <a style="font-size: 14px;" class="dropdown-item" href="#">{{ auth()->user()->name }}</i></a>
+              <a class="dropdown-item" href="{{ route( 'admin.dashboard' ) }}">Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="dropdown-item" href="{{ route( 'admin.profile.edit' ) }}">Profile</i></a>
               <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
+                @csrf
+                <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
+              </form>
+                @else
+                <a style="font-size: 14px;" class="dropdown-item" href="#">{{ auth()->user()->name }}</i></a>
+                <a class="dropdown-item" href="{{ route( 'profile.edit' ) }}">Profile</i></a>
+                <form class="dropdown-item" method="POST" action="{{ route('logout') }}" id="signOut">
                   @csrf
                   <a href="#" onclick="document.getElementById('signOut').submit()"><span>Sign out</span> <i class="fa fa-sign-out-alt  size-icon-1"></i></a>
-              </form>
+                </form>
               @endif
             </div>
           </div>
@@ -163,23 +165,11 @@ https://templatemo.com/tm-541-host-cloud
             <div class="footer-heading">
               <h2>About Us</h2>
             </div>
+            <div>
             <p>{{ $about->about_us }}</p>
-          </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="footer-item">
-            <div class="footer-heading">
-              <h2>Latest Events</h2>
             </div>
-            <ul class="footer-list">
-              @foreach($recentEvents as $recentEvent)
-              <li><a href="{{ route( 'events.index' ) }}">{{ $recentEvent->title }}</a></li>
-              @endforeach
-            </ul>
           </div>
         </div>
-
 
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="footer-item">
@@ -205,30 +195,51 @@ https://templatemo.com/tm-541-host-cloud
                 </a></li>
               @endif
 
-              @if($setting->facebook != null)
-                <li>Facebook: <a href="#">
-                  {{ $setting->facebook }}
-                </a></li>
-              @endif
-
-              @if($setting->instagram != null)
-                <li>Instagram: <a href="#">
-                  {{ $setting->instagram }}
-                </a></li>
-              @endif
-
-              @if($setting->tiktok != null)
-                <li>Tiktok: <a href="#">
-                  {{ $setting->tiktok }}
-                </a></li>
-              @endif
-
             </ul>
           </div>
         </div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="footer-item">
+            <div class="footer-heading">
+              <h2>Developed by</h2>
+            </div>
+            <ul class="footer-list">
+              <li><a target="_blank" href="https://www.linkedin.com/in/malak-sameh-518429297?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Malak Sameh</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/kareem-ashraf-7024a719a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Kareem Ashraf</a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/in/marwan-usama-a393b42a3?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">Marawan Osama</a></li>
+            </ul>
+          </div>
+        </div>
+
+
         <div class="col-md-12">
-          <div class="sub-footer">
-            <p>Copyright &copy; 2024</p>
+          <div class="sub-footer d-lg-block d-flex flex-wrap">
+            <a class="h5 me-3">Social Media</a>
+              @if($setting->linkedin != null)
+                <a href="{{ $setting->linkedin }}" target="_blank" class="me-3">
+                  <i class="fa-brands fa-linkedin"></i>
+                </a>
+              @endif
+
+              @if($setting->facebook != null)
+                <a href="{{ $setting->facebook }}" target="_blank" class="me-3">
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+              @endif
+
+              @if($setting->instagram != null)
+                <a href="{{ $setting->instagram }}" target="_blank" class="me-3">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+              @endif
+
+              @if($setting->tiktok != null)
+                <a href="{{ $setting->tiktok }}" target="_blank" class="me-3">
+                  <i class="fa-brands fa-tiktok"></i>
+                </a>
+              @endif
+
           </div>
         </div>
       </div>

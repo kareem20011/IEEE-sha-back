@@ -40,14 +40,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Number of tickets</label>
-                        <input type="number" class="form-control" name="number_of_tickets">
-                        @error('number_of_tickets')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label>Status:</label>
                         <div class="form-check">
                             <input class="form-check-input" value="1" type="radio" name="status" id="status1">

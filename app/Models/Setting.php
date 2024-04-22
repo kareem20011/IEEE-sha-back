@@ -14,6 +14,7 @@ class Setting extends Model implements HasMedia
         'phone_number',
         'email',
         'whatsapp',
+        'linkedin',
         'facebook',
         'instagram',
         'tiktok',

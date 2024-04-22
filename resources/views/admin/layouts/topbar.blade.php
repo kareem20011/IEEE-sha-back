@@ -21,6 +21,7 @@ $user = auth()->user();
                     @endif
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a style="font-size: 14px;" class="dropdown-item" href="#">{{ auth()->user()->name }}</i></a>
                     <a class="dropdown-item" href="{{ route('admin.profile.edit') }}"><i class="fa fa-user size-icon-1"></i> <span>My
                             Profile</span></a>
                     <a class="dropdown-item" href="{{ route('admin.settings.edit') }}"><i class="fa fa-cog size-icon-1"></i>

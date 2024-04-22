@@ -41,14 +41,6 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Number of tickets</label>
-                        <input type="number" class="form-control" name="number_of_tickets" value="{{ $event->number_of_tickets }}">
-                        @error('number_of_tickets')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
                         <label>Status:</label>
                         <div class="form-check">
                             <input class="form-check-input" {{ $event->status == 1 ? 'checked' : '' }} value="1" type="radio" name="status" id="status1">
@@ -56,7 +48,7 @@
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" {{ $event->status == 0 ? 'checked' : '' }} value="0" type="radio" name="status" id="status2">
-                            <label class="form-check-label" for="status2">Disaple</label>
+                            <label class="form-check-label" for="status2">Disable</label>
                         </div>
                         @error('status')
                             <div class="alert alert-danger">{{ $message }}</div>

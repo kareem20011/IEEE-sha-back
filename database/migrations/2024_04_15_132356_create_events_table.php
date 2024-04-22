@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->date('expiry_date');
-            $table->integer('number_of_tickets');
+            $table->integer('number_of_tickets')->nullable();
             $table->enum('status', ['1', '0'])->default('1');
             $table->timestamps();
         });

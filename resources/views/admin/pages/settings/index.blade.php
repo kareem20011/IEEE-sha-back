@@ -83,6 +83,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 m-3">
+                        <label for="linkedin" class="form-label disabled_labels">Linkedin</label>
+                        <input class="form-control" type="text" id="linkedin" name="linkedin" value="{{ $setting->linkedin }}" autofocus />
+                        @error('linkedin')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 m-3">
                         <label for="facebook" class="form-label disabled_labels">Facebook</label>
                         <input class="form-control" type="text" id="facebook" name="facebook" value="{{ $setting->facebook }}" autofocus />
                         @error('facebook')

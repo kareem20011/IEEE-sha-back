@@ -927,11 +927,11 @@ a {
 /** 3.9 Buttons **/
 button {
     margin-top: 10px;
-    margin-left: 5px;
+    /* margin-left: 5px; */
 }
 button,
 .fas {
-    font-size: 10px;
+    /* font-size: 10px; */
 }
 .btn.btn-outline-white {
     color: #fff;
@@ -973,7 +973,7 @@ button,
 }
 .btn {
     margin-bottom: 10px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 .btn-group:not(.dropdown) .btn:not([class*="btn-"]) {
     border: 1px solid #dfe3e7;
@@ -1513,7 +1513,7 @@ ul.timeline > li:before {
 }
 @media screen and (max-width: 576px) {
     #auth #auth-right {
-        padding: 5rem 3rem;
+        padding: 5rem 1rem;
     }
 }
 

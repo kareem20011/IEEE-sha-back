@@ -13,7 +13,6 @@
       <th>Id</th>
       <th>title</th>
       <th>description</th>
-      <th>Number of tickets</th>
       <th>Expiry date</th>
       <th>status</th>
       <th>image</th>
@@ -29,7 +28,6 @@
           <td>#{{ ++$counter }}</td>
           <td>{{ $event->title }}</td>
           <td>{{ $event->description }}</td>
-          <td>{{ $event->number_of_tickets }}</td>
           <td>
             @if (\Carbon\Carbon::parse($event->expiry_date)->isPast())
             <p class="text-danger">Event has expired!</p>
@@ -39,9 +37,9 @@
           </td>
           <td>
             @if($event->status == 0)
-              <span class="text-danger">Disabled</span>
+              <span class="text-danger">Disable</span>
               @else
-              <span class="text-success">Activated</span>
+              <span class="text-success">Active</span>
             @endif
           </td>
           <td>

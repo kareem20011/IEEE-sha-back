@@ -33,8 +33,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center flex-wrap">
-
                     @foreach($category->boards as $board)
+                    @if($board->status == 1)
                     <div class="card m-3" style="width: 20rem;">
                         @if( $board->hasMedia('images') )
                         <img src="{{ $board->getFirstMediaUrl('images') }}" class="card-img-top" alt="...">
@@ -45,6 +45,7 @@
                             <p class="card-text">{{ $board->description }}</p>
                         </div>
                     </div>
+                    @endif
                     @endforeach
 
                 </div>

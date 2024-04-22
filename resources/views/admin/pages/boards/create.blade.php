@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="mb-3">
-                    <label>Title</label>
+                    <label>Name</label>
                     <input type="text" class="form-control" name="title" value="{{ old( 'title' ) }}">
                     @error('title')
                         <div class="alert alert-danger">{{ $message }}</div>
